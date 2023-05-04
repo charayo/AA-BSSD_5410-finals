@@ -68,7 +68,6 @@ def edge(img, sz, step):
     con_pixels = []
     for x in range(start, img.size[0] - 1, step):
         for y in range(start, img.size[1] - 1, step):
-            # ...
             # apply Sobel filter
             pixels = [
                 img.getpixel((y + j, x + i)) for i in range(-1, 2) for j in range(-1, 2)

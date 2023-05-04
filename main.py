@@ -5,18 +5,26 @@ from PIL import ImageTk
 
 from convolve import *
 from emboss import *
-processed_image = Image.open("boids.png")
+
+current_image = Image.open("boids.png")
+
 
 def handle_emboss(the_img):
+    global current_image
     my_image = Image.open(the_img)
+    current_image = my_image
     # convert the image to RGB mode to ensure that getpixel() always returns a tuple of three values
     my_image = my_image.convert("RGB")
     embossed_image = emboss2(my_image, 1)
     return embossed_image
 
+
 def handle_blurr(the_img):
+    global current_image
     my_image = Image.open(the_img)
+    current_image = my_image
     return blur_image(my_image)
+
 
 def change_image(image):
     global photo_image
@@ -56,18 +64,16 @@ image_label.pack(fill="both", expand=False, pady=20, padx=20)
 button1 = tk.Button(right_frame, text="Emboss", command=lambda: change_image(handle_emboss("sample.png")))
 button1.pack(side="top", pady=20, padx=40)
 
-button2 = tk.Button(right_frame, text="Blur", command=lambda: change_image(handle_blurr("ayo.jpeg")))
+button2 = tk.Button(right_frame, text="Blur", command=lambda: change_image(handle_blurr("new.jpeg")))
 button2.pack(side="top", pady=20, padx=40)
 
 button3 = tk.Button(right_frame, text="Detect Edge")
 button3.pack(side="top", pady=20, padx=40)
 
-button4 = tk.Button(right_frame, text="Button 4")
+button4 = tk.Button(right_frame, text="Reset", command=lambda: change_image(current_image))
 button4.pack(side="top", pady=20, padx=40)
 
 root.mainloop()
-
-
 
 
 def main():
