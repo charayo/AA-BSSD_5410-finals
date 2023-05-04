@@ -5,9 +5,7 @@ from PIL import ImageTk
 
 from convolve import *
 from emboss import *
-
 processed_image = Image.open("boids.png")
-
 
 def handle_emboss(the_img):
     my_image = Image.open(the_img)
@@ -16,14 +14,8 @@ def handle_emboss(the_img):
     embossed_image = emboss2(my_image, 1)
     return embossed_image
 
-
 def handle_blurr(the_img):
-    my_image = Image.open(the_img)
-    # ---------------------------------------
-    # convert to grayscale
-    gray_image = ImageOps.grayscale(my_image)
-    blur_image(gray_image, 3, 2)
-
+    blur_image(the_img)
 
 def change_image(image):
     global photo_image
@@ -69,23 +61,32 @@ button2.pack(side="top", pady=20, padx=40)
 button3 = tk.Button(right_frame, text="Detect Edge")
 button3.pack(side="top", pady=20, padx=40)
 
-button4 = tk.Button(right_frame, text="Reset", command=lambda: change_image("sample.png"))
+button4 = tk.Button(right_frame, text="Button 4")
 button4.pack(side="top", pady=20, padx=40)
 
 root.mainloop()
+
+
 
 
 def main():
     og_image = Image.open("ayo.jpeg")
     # ---------------------------------------
     # convert to grayscale
-    gray_image = ImageOps.grayscale(og_image)
+    # gray_image = ImageOps.grayscale(og_image)
     # # open original for comparison
-    gray_image.show()
+    # gray_image.show()
     # output.show()
+    # ---------------------------------------
+    # for a non grayscale image
+    # output_img = emboss2(og_image, 1)
+    # output_img.show()
+    # ---------------------------------------
     # kernel size of 3x3
-    edge(gray_image, 66, 6)
-    # blur_image(gray_image, 3, 2)
+    # convolve(gray_image, 3, 2)
+    # edge(gray_image, 66, 6)
+    # blur_image2(og_image).show()
+    # convolve2(gray_image, 3, 1)
 
 
 # end def main):
