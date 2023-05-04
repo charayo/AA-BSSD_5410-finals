@@ -15,7 +15,8 @@ def handle_emboss(the_img):
     return embossed_image
 
 def handle_blurr(the_img):
-    blur_image(the_img)
+    my_image = Image.open(the_img)
+    return blur_image(my_image)
 
 def change_image(image):
     global photo_image
@@ -55,7 +56,7 @@ image_label.pack(fill="both", expand=False, pady=20, padx=20)
 button1 = tk.Button(right_frame, text="Emboss", command=lambda: change_image(handle_emboss("sample.png")))
 button1.pack(side="top", pady=20, padx=40)
 
-button2 = tk.Button(right_frame, text="Blur", command=lambda: handle_blurr("sample.png"))
+button2 = tk.Button(right_frame, text="Blur", command=lambda: change_image(handle_blurr("ayo.jpeg")))
 button2.pack(side="top", pady=20, padx=40)
 
 button3 = tk.Button(right_frame, text="Detect Edge")
@@ -71,26 +72,11 @@ root.mainloop()
 
 def main():
     og_image = Image.open("ayo.jpeg")
-    # ---------------------------------------
-    # convert to grayscale
-    # gray_image = ImageOps.grayscale(og_image)
-    # # open original for comparison
-    # gray_image.show()
-    # output.show()
-    # ---------------------------------------
-    # for a non grayscale image
-    # output_img = emboss2(og_image, 1)
-    # output_img.show()
-    # ---------------------------------------
-    # kernel size of 3x3
-    # convolve(gray_image, 3, 2)
-    # edge(gray_image, 66, 6)
-    # blur_image2(og_image).show()
+    # blur_image(og_image).show()
     # convolve2(gray_image, 3, 1)
 
 
 # end def main):
-
 
 if __name__ == "__main__":
     main()

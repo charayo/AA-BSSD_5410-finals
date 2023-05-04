@@ -51,15 +51,15 @@ def convolve(img, sz, step):
 
 # end def convolve.py (img, sz, step):
 
+kernel_x = [[-1, 0, 1],
+            [-2, 0, 2],
+            [-1, 0, 1]
+            ]
 
-kernel = [
-    [1, 2, 1],
-    [2, 4, 2],
-    [1, 2, 1]
-]
-kernel_sum = sum(sum(row) for row in kernel)
-
-
+kernel_y = [[-1, -2, -1],
+            [0, 0, 0],
+            [1, 2, 1]
+            ]
 
 
 def edge(img, sz, step):
@@ -88,7 +88,7 @@ def edge(img, sz, step):
 def blur_image(img, kernel_size=3):
     # Define a kernel for blurring
     kernel = [[1 / kernel_size ** 2] * kernel_size for i in range(kernel_size)]
-    print(kernel)
+    # print(kernel)
     # Define image dimensions and create output image
     width, height = img.size
     output = Image.new('RGB', (width, height))
